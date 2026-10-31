@@ -1,0 +1,13 @@
+### create a new Patient entity
+POST http://localhost:8081/patients
+Content-Type: application/json
+
+{
+  "name": "Gaurav Prajapati",
+  "address": "Bengaluru",
+  "dateOfBirth": "1997-08-07",
+  "email": "gaurav@gmail.com",
+  "registeredDate": "2027-10-30"
+}
+
+###
