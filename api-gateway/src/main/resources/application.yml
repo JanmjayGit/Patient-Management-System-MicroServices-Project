@@ -1,0 +1,43 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            ## Auth service route
+            ## http://localhost:8084/auth/users/login
+            ## API GATEWAY -> http://auth-service:8085/users/login
+            - id: auth-service-route
+              uri: http://auth-service:8085
+              predicates:
+                - Path=/auth/**
+              filters:
+                - StripPrefix=1
+            # Patient Service
+            # REST client -> http://localhost:8084/api/patients
+            # API gateway -> http://patient-service:8081/patients
+            # Patient Service (spring boot app) -> patients -> patients array
+            - id: patient-service-route
+              uri: http://patient-service:8081
+              predicates:
+                - Path=/api/patients,/api/patients/**
+              filters:
+                - StripPrefix=1
+                - JwtValidation
+
+            # Patient Service Swagger API docs
+            # REST CLIENT -> http://localhost:8084/api-docs-patients
+            #  API GATEWAY -> http://patient-service:8081/v3/api-docs
+            - id: api-docs-patient-route
+              uri: http://patient-service:8081
+              predicates:
+                - Path=/api-docs/patients
+              filters:
+                - RewritePath=/api-docs/patients, /v3/api-docs
+

@@ -1,0 +1,11 @@
+### Validate token using auth service
+GET http://localhost:8085/users/validate
+Authorization: Bearer {{token}}
+
+###
+
+### Validate token useing API GATEWAY
+GET http://localhost:8084/auth/users/validate
+Authorization: Bearer {{token}}
+
+###

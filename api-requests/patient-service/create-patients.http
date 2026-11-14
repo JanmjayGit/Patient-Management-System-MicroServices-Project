@@ -3,10 +3,10 @@ POST http://localhost:8081/patients
 Content-Type: application/json
 
 {
-  "name": "Gaurav Prajapati",
+  "name": "yugal Prajapati kafka test",
   "address": "Bengaluru",
-  "dateOfBirth": "1997-08-07",
-  "email": "gaurav@gmail.com",
+  "dateOfBirth": "1992-08-07",
+  "email": "yugalkafkaconsumertest@gmail.com",
   "registeredDate": "2027-10-30"
 }
 
